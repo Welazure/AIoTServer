@@ -29,7 +29,7 @@ namespace AIoTServer.Server.EndPoint
                             return;
                         }
 
-                        if (!AppRouter.Instance.hasConnections())
+                        if (!AppRouter.Instance.HasConnections())
                         {
                             Send(JsonUtil.Serialize(new DataPacket(0, null)));
                             return;

@@ -15,7 +15,7 @@ namespace AIoTServer.Server.EndPoint
 
         protected override void OnMessage(MessageEventArgs e)
         {
-            Console.WriteLine("DEBUG: New IoT Client Connected!");
+            Console.WriteLine("Received App Message: " + e.Data);
             try
             {
                 var dataPacket = JsonSerializer.Deserialize<DataPacket>(e.Data);

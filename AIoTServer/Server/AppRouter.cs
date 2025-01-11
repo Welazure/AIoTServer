@@ -20,7 +20,7 @@ namespace AIoTServer.Server
             _appSessions?.Broadcast(message);
         }
 
-        public bool hasConnections()
+        public bool HasConnections()
         {
             if (_appSessions == null)
             {

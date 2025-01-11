@@ -1,19 +1,17 @@
-﻿using AIoTServer.Util;
-
-namespace AIoTServer.Server
+﻿namespace AIoTServer.Util
 {
     public class Scheduler
     {
         private readonly Queue<EventData> _data;
-    
+
         private static Scheduler _instance = null;
         private static readonly object Padlock = new object();
-    
+
         private Scheduler()
         {
-             _data = new Queue<EventData>();
+            _data = new Queue<EventData>();
         }
-    
+
         public static Scheduler Instance
         {
             get
@@ -24,7 +22,7 @@ namespace AIoTServer.Server
                 }
             }
         }
-    
+
         public bool isEmpty()
         {
             return _data.Count == 0;
