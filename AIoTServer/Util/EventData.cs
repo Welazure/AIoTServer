@@ -11,9 +11,9 @@ namespace AIoTServer.Util
             EventType = eventType;
         }
 
-        public string Id { get; private set; }
-        public long Time { get; private set; }
-        public byte EventType { get; private set; }
+        public string Id { get; set; }
+        public long Time { get; set; }
+        public byte EventType { get; set; }
 
         public override bool Equals(object obj)
         {

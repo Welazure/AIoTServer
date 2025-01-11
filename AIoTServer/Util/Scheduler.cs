@@ -23,14 +23,23 @@
             }
         }
 
-        public bool isEmpty()
+        public bool IsEmpty()
         {
             return _data.Count == 0;
         }
 
-        public EventData Head()
+        public EventData Peek()
         {
             return _data.Peek();
+        }
+
+        public EventData Dequeue()
+        {
+            return _data.Dequeue();
+        }
+        public void Enqueue(EventData data)
+        {
+            _data.Enqueue(data);
         }
     }
 }

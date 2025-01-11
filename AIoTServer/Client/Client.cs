@@ -9,26 +9,26 @@ namespace AIoTServer.Client
 
         public Client(bool start, String url)
         {
-            this.Url = url;
+            Url = url;
             Socket = new WebSocket(url);
             if (start)
             {
-                this.Start();
+                Start();
             }
         }
 
-        public void Start()
+        public virtual void Start()
         {
-            this.HandleMessage();
+            HandleMessage();
             Socket.Connect();
         }
 
-        public void Stop()
+        public virtual void Stop()
         {
             Socket.Close();
         }
 
-        private void HandleMessage()
+        protected virtual void HandleMessage()
         {
             Socket.OnMessage += (sender, e) =>
             {

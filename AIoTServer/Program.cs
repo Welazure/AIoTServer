@@ -28,11 +28,11 @@ namespace AIoTServer
                 var connectionString = Console.ReadLine().Trim();
                 if (connectionType == "iot")
                 {
-
+                    var client = new Client.IotClient(true, connectionString);
                 }
                 else
                 {
-
+                    var client = new Client.AppClient(true, connectionString);
                 }
             }
         }

@@ -25,13 +25,13 @@ namespace AIoTServer.Server.EndPoint
 
                         if (!DataStore.Instance.Add(eventData))
                         {
-                            Send(JsonUtil.Serialize(new DataPacket(2, null)));
+                            Send(JsonUtil.Serialize(new DataPacket(2, eventData.Id)));
                             return;
                         }
 
                         if (!AppRouter.Instance.HasConnections())
                         {
-                            Send(JsonUtil.Serialize(new DataPacket(0, null)));
+                            Send(JsonUtil.Serialize(new DataPacket(0, eventData.Id)));
                             return;
                         }
 
