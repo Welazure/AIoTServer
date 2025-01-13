@@ -6,8 +6,8 @@ public class FirebaseConnection
 {
     public FirebaseConnection()
     {
-        Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", "D:/aiot.json");
-        Connection = FirestoreDb.Create("aiot-df756");
+        Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", Program._firebaseJson);
+        Connection = FirestoreDb.Create(Program._firebaseId);
     }
 
     public FirestoreDb Connection { get; private set; }
