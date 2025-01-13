@@ -1,23 +1,22 @@
-﻿using System.Text.Json.Serialization;
-using System.Text.Json;
+﻿using System.Text.Json;
+using System.Text.Json.Serialization;
 
-namespace AIoTServer.Util
+namespace AIoTServer.Util;
+
+internal class JsonUtil
 {
-    internal class JsonUtil
+    private static readonly JsonSerializerOptions Options = new()
     {
-        private static readonly JsonSerializerOptions _options = new()
-        {
-            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
-        };
+        DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+    };
 
-        public static string Serialize(object obj)
-        {
-            return JsonSerializer.Serialize(obj, _options);
-        }
+    public static string Serialize(object obj)
+    {
+        return JsonSerializer.Serialize(obj, Options);
+    }
 
-        public static T Deserialize<T>(string json)
-        {
-            return JsonSerializer.Deserialize<T>(json);
-        }
+    public static T Deserialize<T>(string json)
+    {
+        return JsonSerializer.Deserialize<T>(json);
     }
 }

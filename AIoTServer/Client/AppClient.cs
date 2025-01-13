@@ -1,31 +1,28 @@
-﻿namespace AIoTServer.Client
+﻿namespace AIoTServer.Client;
+
+public class AppClient : Client
 {
-    public class AppClient : Client
+    public AppClient(bool start, string url) : base(start, url)
     {
-        public AppClient(bool start, string url) : base(start, url)
+        if (!start) Start();
+        while (true)
         {
-            if (!start) Start();
-            while (true)
-            {
-                Console.WriteLine("Send Data: ");
-                var data = Console.ReadLine().Trim();
-                if (data == "EXIT")
-                {
-                    break;
-                }
+            Console.WriteLine("Send Data: ");
+            var data = Console.ReadLine()?.Trim();
+            if (data == "EXIT") break;
 
-                Socket.Send(data);
-            }
-            Stop();
+            Socket.Send(data);
         }
 
-        protected override void HandleMessage()
+        Stop();
+    }
+
+    protected override void HandleMessage()
+    {
+        Socket.OnMessage += (sender, e) =>
         {
-            Socket.OnMessage += (sender, e) =>
-            {
-                Console.WriteLine("Received Data: " + e.Data);
-                Console.WriteLine("Send Data: ");
-            };
-        }
+            Console.WriteLine("Received Data: " + e.Data);
+            Console.WriteLine("Send Data: ");
+        };
     }
 }

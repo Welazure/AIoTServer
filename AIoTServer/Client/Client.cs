@@ -1,39 +1,32 @@
 ﻿using WebSocketSharp;
 
-namespace AIoTServer.Client
+namespace AIoTServer.Client;
+
+public class Client
 {
-    public class Client
+    public Client(bool start, string url)
     {
-        public WebSocket Socket { get; }
-        public String Url { get; private set; }
+        Url = url;
+        Socket = new WebSocket(url);
+        if (start) Start();
+    }
 
-        public Client(bool start, String url)
-        {
-            Url = url;
-            Socket = new WebSocket(url);
-            if (start)
-            {
-                Start();
-            }
-        }
+    public WebSocket Socket { get; }
+    public string Url { get; private set; }
 
-        public virtual void Start()
-        {
-            HandleMessage();
-            Socket.Connect();
-        }
+    public virtual void Start()
+    {
+        HandleMessage();
+        Socket.Connect();
+    }
 
-        public virtual void Stop()
-        {
-            Socket.Close();
-        }
+    public virtual void Stop()
+    {
+        Socket.Close();
+    }
 
-        protected virtual void HandleMessage()
-        {
-            Socket.OnMessage += (sender, e) =>
-            {
-                Console.WriteLine(e.Data);
-            };
-        }
+    protected virtual void HandleMessage()
+    {
+        Socket.OnMessage += (sender, e) => { Console.WriteLine(e.Data); };
     }
 }

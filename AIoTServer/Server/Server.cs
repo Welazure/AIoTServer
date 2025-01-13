@@ -1,41 +1,35 @@
-﻿using System.Text.Json;
-using AIoTServer.Server.EndPoint;
-using AIoTServer.Util;
-using WebSocketSharp;
+﻿using AIoTServer.Server.EndPoint;
 using WebSocketSharp.Server;
 
-namespace AIoTServer.Server
+namespace AIoTServer.Server;
+
+public class Server
 {
-    public class Server
+    public Server(bool start, string url)
     {
-        public WebSocketServer Socket { get; }
-        public String Url { get; }
+        Url = url;
+        Socket = new WebSocketServer(url);
 
-        public Server(bool start, String url)
-        {
-            Url = url;
-            Socket = new WebSocketServer(Url);
-            if (start)
-            {
-                Start();
-            }
-        }
+        if (start) Start();
+    }
 
-        public void Start()
-        {
-            Init();
-            Socket.Start();
-        }
+    public WebSocketServer Socket { get; }
+    public string Url { get; }
 
-        public void Stop()
-        {
-            Socket.Stop();
-        }
+    public void Start()
+    {
+        Init();
+        Socket.Start();
+    }
 
-        public void Init()
-        {
-            Socket.AddWebSocketService<IoT>("/iot");
-            Socket.AddWebSocketService<App>("/app");
-        }
+    public void Stop()
+    {
+        Socket.Stop();
+    }
+
+    public void Init()
+    {
+        Socket.AddWebSocketService<IoT>("/iot");
+        Socket.AddWebSocketService<App>("/app");
     }
 }
