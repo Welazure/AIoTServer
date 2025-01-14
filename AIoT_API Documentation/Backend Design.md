@@ -16,7 +16,7 @@ Communication diagram
 
 ```json
 {
-	"Type": 1,
+	"Type": 0,
 	"Data": {
 		"Id": "12345678",
 		"EventType": 1,
