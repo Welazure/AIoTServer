@@ -1,13 +1,12 @@
 ﻿using WebSocketSharp;
 using WebSocketSharp.Server;
 
-namespace AIoTServer.Server.EndPoint
+namespace AIoTServer.Server.EndPoint;
+
+public class Echo : WebSocketBehavior
 {
-    public class Echo : WebSocketBehavior
+    protected override void OnMessage(MessageEventArgs e)
     {
-        protected override void OnMessage(MessageEventArgs e)
-        {
-            Send("Pong: " + e.Data);
-        }
+        Send("Pong: " + e.Data);
     }
 }
