@@ -3,7 +3,7 @@ using AIoTServer.Data.Type;
 
 namespace AIoTServer.Data.Services;
 
-public class DataStore
+public class DataStore : IDataProvider
 {
     private static DataStore _instance;
     private static readonly object Padlock = new();
@@ -37,5 +37,10 @@ public class DataStore
     public List<EventData> Get()
     {
         return _data.Get();
+    }
+
+    public List<EventData> Get(int days)
+    {
+        return _data.Get(days);
     }
 }

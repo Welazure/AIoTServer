@@ -16,4 +16,9 @@ public class NonPersistentProvider : IDataProvider
     {
         return _data.ToList();
     }
+
+    public List<EventData> Get(int days)
+    {
+        return _data.ToList().Where(x => x.Time >= DateTimeOffset.UtcNow.AddDays(-days).ToUnixTimeMilliseconds()).ToList();
+    }
 }
