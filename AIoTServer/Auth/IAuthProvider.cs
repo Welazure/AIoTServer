@@ -10,6 +10,7 @@ namespace AIoTServer.Auth
     {
         bool createAccount(string name, string password);
         string verifyAccount(string name, string password);
-        string verifyToken(string token);
+        bool verifyToken(string token);
+
     }
 }

@@ -22,7 +22,7 @@
 
         public bool verifyToken(string token)
         {
-            
+            return token.Length > 3;
         }
 
 
