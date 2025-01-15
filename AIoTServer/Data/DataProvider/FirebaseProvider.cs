@@ -42,12 +42,14 @@ internal class FirebaseProvider : IDataProvider
 
         return eventsList;
     }
+
     public List<EventData> Get(int days)
     {
         var toReturn = Task.Run(async () => await GetAsync(days)).Result;
         Console.WriteLine("Done retrieving");
         return toReturn;
     }
+
     public async Task<List<EventData>> GetAsync(int days)
     {
         var currentTime = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();

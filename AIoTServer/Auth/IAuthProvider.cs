@@ -1,16 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace AIoTServer.Auth;
 
-namespace AIoTServer.Auth
+public interface IAuthProvider
 {
-    public interface IAuthProvider
-    {
-        bool createAccount(string name, string password);
-        string verifyAccount(string name, string password);
-        bool verifyToken(string token);
-
-    }
+    bool createAccount(string name, string password);
+    string verifyAccount(string name, string password);
+    bool verifyToken(string token);
 }

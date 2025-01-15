@@ -6,6 +6,7 @@ public class Program
 {
     public static string _firebaseId;
     public static string _firebaseJson;
+
     public static void Main(string[] args)
     {
         Console.Write("server/client? ");

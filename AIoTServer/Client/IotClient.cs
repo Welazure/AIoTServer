@@ -6,8 +6,8 @@ namespace AIoTServer.Client;
 
 public class IotClient : Client
 {
-    private bool _isWaitingForAck; // Flag to indicate if we're waiting for an ack
     private readonly Queue<EventData> _queue;
+    private bool _isWaitingForAck; // Flag to indicate if we're waiting for an ack
 
     public IotClient(bool start, string url) : base(start, url)
     {
@@ -107,4 +107,3 @@ public class IotClient : Client
         };
     }
 }
-
