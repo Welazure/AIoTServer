@@ -31,5 +31,6 @@ public class Server
     {
         Socket.AddWebSocketService<IoT>("/iot");
         Socket.AddWebSocketService<App>("/app");
+        Socket.AddWebSocketService<Echo>("/echo");
     }
 }

@@ -1,7 +1,7 @@
 ﻿using AIoTServer.Data.DataProvider;
 using AIoTServer.Data.Type;
 
-namespace AIoTServer.Data;
+namespace AIoTServer.Data.Services;
 
 public class DataStore
 {

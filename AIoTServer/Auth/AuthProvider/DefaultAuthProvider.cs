@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace AIoTServer.Auth
+﻿namespace AIoTServer.Auth.AuthProvider
 {
     public class DefaultAuthProvider : IAuthProvider
     {
-        private Dictionary<String, String> _auth;
+        private readonly Dictionary<string, string> _auth;
 
         public DefaultAuthProvider()
         {
@@ -17,18 +11,20 @@ namespace AIoTServer.Auth
         public bool createAccount(string name, string password)
         {
             if (string.IsNullOrEmpty(name)) return false;
-            if (_auth.ContainsKey(name)) return false;
-            return true;
+            return _auth.TryAdd(name, password);
         }
 
         public string verifyAccount(string name, string password)
         {
-            throw new NotImplementedException();
+            if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(password)) return null;
+            return _auth.TryGetValue(name, out var pass) && pass == password ? name : null;
         }
 
-        public string verifyToken(string token)
+        public bool verifyToken(string token)
         {
-            throw new NotImplementedException();
+            
         }
+
+
     }
 }

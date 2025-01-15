@@ -42,6 +42,36 @@ internal class FirebaseProvider : IDataProvider
 
         return eventsList;
     }
+    public List<EventData> Get(int days)
+    {
+        var toReturn = Task.Run(async () => await GetAsync(days)).Result;
+        Console.WriteLine("Done retrieving");
+        return toReturn;
+    }
+    public async Task<List<EventData>> GetAsync(int days)
+    {
+        var currentTime = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
+        var threshold = currentTime - days * 24 * 60 * 60 * 1000;
+
+        var eventsCollection = _connection.Connection.Collection("events");
+
+        // Get all documents in the collection
+        var snapshot = await eventsCollection.OrderByDescending("Time").EndAt(threshold).GetSnapshotAsync();
+
+        var eventsList = new List<EventData>();
+
+        foreach (var doc in snapshot.Documents)
+        {
+            if (!doc.Exists) continue;
+            // Convert document data to EventData and populate Id
+            var eventData = doc.ConvertTo<EventData>();
+            eventData.Id = doc.Id;
+
+            eventsList.Add(eventData);
+        }
+
+        return eventsList;
+    }
 
     public async Task<bool> AddAsync(EventData data)
     {

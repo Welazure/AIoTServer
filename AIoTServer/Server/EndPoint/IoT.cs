@@ -1,5 +1,5 @@
 ﻿using System.Text.Json;
-using AIoTServer.Data;
+using AIoTServer.Data.Services;
 using AIoTServer.Data.Type;
 using AIoTServer.Server.Router;
 using AIoTServer.Util;

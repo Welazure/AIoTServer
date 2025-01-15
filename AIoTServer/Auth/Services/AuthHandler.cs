@@ -1,12 +1,6 @@
-﻿using AIoTServer.Data.DataProvider;
-using AIoTServer.Data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AIoTServer.Auth.AuthProvider;
 
-namespace AIoTServer.Auth
+namespace AIoTServer.Auth.Services
 {
     public class AuthHandler
     {
